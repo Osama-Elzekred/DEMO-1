@@ -1,0 +1,38 @@
+﻿@model Department
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css"
+
+    <title>Edit Department</title>
+</head>
+<body>
+    <div class="container mt-5">
+        @*            <div class="form-group">
+        <label for="studentId">ID:</label>
+        <input type="text" class="form-control" id="studentId" name="Id" required>
+        </div>*@
+        <form method="POST" ,action="EditDepartment">
+            <div class="form-group">
+                <label for="Department Name">Department Name:</label>
+                <input type="text" class="form-control" id="Dept_Name" name="Dept_Name" required value="@Model.Dept_Name">
+            </div>
+            <div class="form-group">
+                <label for="Dept_Location">Department Location:</label>
+                <input type="text" class="form-control" id="Dept_Location" name="Dept_Location" required value="@Model.Dept_Location">
+            </div>
+            <div class="form-group">
+                <label for="Dept_Desc">Department Desc:</label>
+                <input type="text" class="form-control" id="Dept_Desc" name="Dept_Desc" required value="@Model.Dept_Desc">
+            </div>
+            <button type="submit" class="btn btn-primary">Edit Department</button>
+        </form>
+    </div>
+</body>
+</html>

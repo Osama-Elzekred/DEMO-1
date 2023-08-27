@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Department>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    @foreach (var item in Model)
+    {
+        <h3>@item</h3>
+    }
+</body>
+</html>

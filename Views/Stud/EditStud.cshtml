@@ -1,0 +1,54 @@
+﻿@model Student
+@{
+ViewBag.Titel = "Edit Student";
+}
+
+
+    <div class="container mt-5">
+        <h2>Add Student</h2>
+        @*            <div class="form-group">
+        <label for="studentId">ID:</label>
+        <input type="text" class="form-control" id="studentId" name="Id" required>
+        </div>*@
+        <form method="POST" ,action="editStud">
+            <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" class="form-control" id="firstName" name="fName" required value="@Model.Fname">
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" class="form-control" id="lastName" name="lName" required value="@Model.Lname">
+            </div>
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" class="form-control" id="age" name="age" required value="@Model.Age">
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <input class="form-control" id="address" name="address" rows="3" required value="@Model.Address" >
+            </div>  
+            <div class="form-group">
+                <label for="Email">Email:</label>
+                <input class="form-control" id="Email" name="Email" rows="3" required value="@Model.Email">
+            </div>
+        <div class="form-group">
+            <label for="department">Department:</label>
+            <select asp-for=Dept_Id asp-items="ViewBag.dept" class="form-control" id="department">
+                <option disabled>select Department</option>
+                @* @foreach (var item in ViewBag.Dept)
+                {
+                <option value="@item.id">@item.Dept_Name</option>
+                }*@
+            </select>
+            <span asp-validation-for="Department"></span>
+
+        </div>
+            @*@Html.HiddenFor(model => item.id)*@
+            <div class="d-flex justify-content-center mt-md-auto">
+
+            <button type="submit" class="btn btn-primary ">Edit Student</button>
+            </div>
+            @*@Html.HiddenFor(model => model.Department.Dept_Name)*@
+
+        </form>
+    </div>

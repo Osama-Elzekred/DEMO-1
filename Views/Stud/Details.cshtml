@@ -1,0 +1,13 @@
+﻿@*@model IEnumerable<DEMO_1.Scaffold.Student>*@
+@model IEnumerable<Student>
+
+@{
+    ViewBag.Titel = "Details";
+}
+
+
+    @foreach (var item in Model)
+    {
+      <h3>@item</h3>
+    }
+

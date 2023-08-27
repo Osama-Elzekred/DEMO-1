@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Department>
+@{
+    Layout = null;
+    int i = 1;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css"
+    <title>Departments</title>
+</head>
+<body>
+    <a href="/Department/Create" class="btn btn btn-success">Create</a>
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Dep Name</th>
+                <th scope="col">Dep Location</th>
+                <th scope="col">Dep Desc</th>
+                <th scope="col">Modify</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@(item.id)</th>
+                    <td>@item.Dept_Name</td>
+                    <td>@item.Dept_Location</td>
+                      <td>@item.Dept_Desc</td>
+                    <td><a asp-action="EditDepartment" asp-route-id="@item.id" class="btn btn-outline-primary">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.id" onclick="return confirm('Are you sure?')" class="btn btn-danger">Delete</a>
+
+                    </td>
+                </tr>
+
+            }
+    </table>
+    </tbody>
+    </table>
+</body>
+</html>

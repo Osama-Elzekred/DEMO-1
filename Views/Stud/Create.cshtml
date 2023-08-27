@@ -1,0 +1,74 @@
+﻿@model Student
+@{
+}
+
+
+
+    <div class="container mt-5">
+        <h2>Add Student</h2>
+@*            <div class="form-group">
+                <label for="studentId">ID:</label>
+                <input type="text" class="form-control" id="studentId" name="Id" required>
+            </div>*@
+        <form method="POST",action="create">
+            @*<div asp-validation-summary="All"></div>*@
+            <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input  asp-for=Fname type="text" class="form-control" id="firstName" name="fName" required>
+                <span asp-validation-for="Fname"></span>
+
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input asp-for="Lname"  type="text" class="form-control" id="lastName" name="lName" required>
+                <span asp-validation-for="Lname"></span>
+            </div>
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input asp-for=Age type="number" class="form-control" id="age" name="age" required>
+                <span asp-validation-for="Age"></span>
+
+            </div>
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea asp-for=Address class="form-control" id="address" name="address" rows="3" required></textarea>
+                <span asp-validation-for="Address"></span>
+
+            </div>
+            <div class="form-group">
+                <label for="Email">Email:</label>
+                <input asp-for=Email class="form-control" id="Email" name="Email" rows="3" required>
+                <span asp-validation-for="Email"></span>
+
+            </div>
+        <div class="form-group">
+            <label  for="password" asp-for="password"></label>
+            <input type="password" asp-for=password class="form-control" id="" name="password" rows="3" required>
+            <span asp-validation-for="password"></span>
+        </div>
+        <div class="form-group">
+            <label  for="" asp-for="cpassword"></label>
+            <input type="password" asp-for=cpassword class="form-control" id="" name="cpassword" rows="3" required>
+            <span asp-validation-for="cpassword"></span>
+        </div>
+
+        <div class="form-group">
+                <label for="department">Department:</label>
+                <select asp-for=Dept_Id asp-items="ViewBag.dept" class="form-control" id="department" >
+                    <option disabled>select Department</option>
+                   @* @foreach (var item in ViewBag.Dept)
+                    {
+                        <option value="@item.id">@item.Dept_Name</option>
+                    }*@
+                </select>
+                <span asp-validation-for="Department"></span>
+
+            </div>
+            <button type="submit" class="btn btn-primary">Add Student</button>
+        </form>
+    @section Scripts{
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    }
+    </div>
+
