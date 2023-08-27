@@ -6,35 +6,42 @@ namespace DEMO_1.BLL
 {
     public class StudentBLL : Istudent
     {
-        ITIContext ItisContext = new ITIContext();
+        ITIContext ITIContext = new ITIContext();
         public void Add(Student student)
         {
-            ItisContext.Students.Add(student);
-            ItisContext.SaveChanges();
+            ITIContext.Students.Add(student);
+            ITIContext.SaveChanges();
         }
         public void Update(Student student)
         {
-            ItisContext.Students.Update(student);
-            ItisContext.SaveChanges();
+            ITIContext.Students.Update(student);
+            ITIContext.SaveChanges();
         }
         public void Delete(Student student)
         {
-            ItisContext.Students.Remove(student);
-            ItisContext.SaveChanges();
+            ITIContext.Students.Remove(student);
+            ITIContext.SaveChanges();
         }
         public List<Student> GetAll()
         {
-            return ItisContext.Students.Include(s=>s.Department).ToList();
+            return ITIContext.Students.Include(s=>s.Department).ToList();
         }
         public Student GetById(int id)
         {
-            return ItisContext.Students?.Include(s => s.Department).FirstOrDefault(s=>s.Id==id);
+            return ITIContext.Students?.Include(s => s.Department).FirstOrDefault(s=>s.Id==id);
         }
 
         public List<Department>? GetDept()
         {
             return GetAll()?.Select(s => s.Department)?.Distinct().ToList();
         }
-
+        public bool IsEmailExist(string email)
+        {
+            return ITIContext.Students.Any(s => (s.Email ?? "").ToLower() == email.ToLower());
+        }
+        public bool IsEmailExist(string email,int id)
+        {
+           return ITIContext.Students.Any(s => (s.Email??"").ToLower() == email.ToLower() &&s.Id!=id);
+        }
     }
 }

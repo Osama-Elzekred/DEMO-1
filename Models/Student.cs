@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DEMO_1.Models
 {
@@ -21,6 +22,7 @@ namespace DEMO_1.Models
 
         [EmailAddress]
         //[RegularExpression("[a-zA-Z0-9]+@[a-z]+.[a-z]{2,4}")]
+        [Remote(action: "checkEmail", controller: "Stud",AdditionalFields ="Id",ErrorMessage ="Email already Exists!")]
         public string? Email { get; set; }
         public int? Age { get; set; }
 

@@ -4,7 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddSingleton<Istudent,studentMoc>();
+builder.Services.AddTransient<Istudent,StudentBLL>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

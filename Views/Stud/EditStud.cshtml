@@ -1,6 +1,6 @@
 ﻿@model Student
 @{
-ViewBag.Titel = "Edit Student";
+ViewBag.Title = "Edit Student";
 }
 
 
@@ -11,29 +11,41 @@ ViewBag.Titel = "Edit Student";
         <input type="text" class="form-control" id="studentId" name="Id" required>
         </div>*@
         <form method="POST" ,action="editStud">
+        @*<input type="hidden" asp-for="Id" />*@
+        @Html.HiddenFor(model => model.Id)
+        
             <div class="form-group">
                 <label for="firstName">First Name:</label>
-                <input type="text" class="form-control" id="firstName" name="fName" required value="@Model.Fname">
+                <input  asp-for="Fname" type="text" class="form-control" id="firstName" name="fName" required value="@Model.Fname">
+                    <span asp-validation-for="Fname"></span>
             </div>
             <div class="form-group">
                 <label for="lastName">Last Name:</label>
-                <input type="text" class="form-control" id="lastName" name="lName" required value="@Model.Lname">
+            <input asp-for="Lname" type="text" class="form-control" id="lastName" name="lName" required value="@Model.Lname">
+            <span asp-validation-for="Lname"></span>
+
             </div>
             <div class="form-group">
                 <label for="age">Age:</label>
-                <input type="number" class="form-control" id="age" name="age" required value="@Model.Age">
+            <input asp-for="Age" type="number" class="form-control" id="age" name="age" required value="@Model.Age">
+            <span asp-validation-for="Age"></span>
+
             </div>
             <div class="form-group">
                 <label for="address">Address:</label>
-                <input class="form-control" id="address" name="address" rows="3" required value="@Model.Address" >
+            <input asp-for=Address class="form-control" id="address" name="address" rows="3" required value="@Model.Address">
+            <span asp-validation-for="Address"></span>
+
             </div>  
             <div class="form-group">
                 <label for="Email">Email:</label>
-                <input class="form-control" id="Email" name="Email" rows="3" required value="@Model.Email">
+            <input asp-for=Email class="form-control" id="Email" name="Email" rows="3" required value="@Model.Email">
+            <span asp-validation-for="Email"></span>
+
             </div>
         <div class="form-group">
             <label for="department">Department:</label>
-            <select asp-for=Dept_Id asp-items="ViewBag.dept" class="form-control" id="department">
+            <select asp-for="Dept_Id"  asp-items="ViewBag?.dept"  class="form-control" id="department" ,name="Department">
                 <option disabled>select Department</option>
                 @* @foreach (var item in ViewBag.Dept)
                 {
@@ -51,4 +63,9 @@ ViewBag.Titel = "Edit Student";
             @*@Html.HiddenFor(model => model.Department.Dept_Name)*@
 
         </form>
+        @section Scripts{
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    }
+    @*@Html.HiddenFor(Model => Model.password,new { Value = Model.password })*@
     </div>

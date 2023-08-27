@@ -10,5 +10,7 @@ namespace DEMO_1.BLL
         public void Update(Student s);
         public void Delete(Student s);
         public List<Department>? GetDept();
+        public bool IsEmailExist(string email);
+        public bool IsEmailExist(string email, int id);
     }
 }

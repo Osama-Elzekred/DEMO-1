@@ -4,7 +4,7 @@ namespace DEMO_1.BLL
 {
     public class studentMoc : Istudent
     {
-        static List<Student> 
+         List<Student> 
             std  = new List<Student>
             {
                 new Student
@@ -44,7 +44,7 @@ namespace DEMO_1.BLL
                     Dept_Id = 1,
                     St_super = null,
                     password = "mypass456",
-                    Department = new Department { id = 1, Dept_Name = "Computer Science" }
+                    Department = new Department { id = 1, Dept_Name = "IT" }
                 },
                 new Student
                 {
@@ -87,10 +87,11 @@ namespace DEMO_1.BLL
         public void Update(Student s)
         {
             //GetDummyStudents().Remove(GetById(s.Id));
-                var s2= GetById(s.Id);
-            s2=s;
+            var s2= GetById(s.Id);
+            s.Department= GetDept()?.Where(d=>d.id==s.Dept_Id).FirstOrDefault();
+            std[s2.Id-1]=s;
         }
-        public static List<Student> GetDummyStudents()
+        public  List<Student> GetDummyStudents()
         {
 
             return std;
@@ -100,9 +101,15 @@ namespace DEMO_1.BLL
         {
             return GetAll()?.Select(s => s.Department).Distinct().ToList();
         }
-          
 
-            
-        
+        public bool IsEmailExist(string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsEmailExist(string email, int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

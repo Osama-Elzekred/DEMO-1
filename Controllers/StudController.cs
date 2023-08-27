@@ -54,29 +54,41 @@ namespace DEMO_1.Controllers
         {
            
             var std = studentBLL.GetById(id);
+            //TempData.Keep();
             ViewBag.Dept  = new SelectList(studentBLL.GetDept(), "id", "Dept_Name");
             return View(std);
         }
         [HttpPost]
-        public IActionResult EditStud(Student s)
+        public IActionResult EditStud([Bind("Id, Fname, Lname, Address, Email,Age,Dept_Id")] Student s)
         {
 
             //if (int.TryParse(Request.Query["id"], out int deptId))
             //{
             //    s.Dept_Id = deptId;
             //}
-            ModelState["password"].ValidationState=ModelValidationState.Valid;
+            var std = studentBLL.GetById(s.Id);
+            std.Fname = s.Fname;
+            std.Lname = s.Lname;
+            std.Address = s.Address;
+            std.Email = s.Email;
+            std.Age = s.Age;
+            std.Dept_Id = s.Dept_Id;
+            ModelState["password"].ValidationState= ModelValidationState.Valid;
             if (!ModelState.IsValid)
             {
                 return RedirectToAction("index");
             }
+            studentBLL.Update(std);
 
-            studentBLL.Update(s);
+            //studentBLL.Update(s);
             //Console.WriteLine($"{s.Department.Dept_Name}");
             return RedirectToAction("index");
         }
-       
-        
+        [AcceptVerbs("Get", "Post")]
+        public JsonResult checkEmail(string email,int Id)
+        {
+            return Json(!studentBLL.IsEmailExist(email,Id));
+        }
         //public ViewResult Details()
         //{
         //    // Code-frist approach
@@ -91,19 +103,19 @@ namespace DEMO_1.Controllers
         //    // DB -first approach
         //    //return View(new Scaffold.ItisContext().Students.Where(s => s.StId > 0));
         //}
-     /*   public ViewResult Details2()
-        {
-            // Code-frist approach
-            //using (var studentBLL = new ITIContext())
-            //{
+        /*   public ViewResult Details2()
+           {
+               // Code-frist approach
+               //using (var studentBLL = new ITIContext())
+               //{
 
-            //    var std = studentBLL.Students.Where(s => s.Id > 0).ToList();
-            //    return View(std);
-            //}
+               //    var std = studentBLL.Students.Where(s => s.Id > 0).ToList();
+               //    return View(std);
+               //}
 
 
-            // DB -first approach
-            return View("Details",new Scaffold.ItisContext().Students.Where(s => s.StId > 0).AsEnumerable());
-        }*/
+               // DB -first approach
+               return View("Details",new Scaffold.ItisContext().Students.Where(s => s.StId > 0).AsEnumerable());
+           }*/
     }
 }
