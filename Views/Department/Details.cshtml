@@ -1,19 +1,17 @@
-﻿@model IEnumerable<Department>
+﻿@model Department
 @{
-    Layout = null;
+    ViewData["Title"] = "Department Details";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
-    @foreach (var item in Model)
-    {
-        <h3>@item</h3>
-    }
-</body>
-</html>
+<h2>Department Details</h2>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Dept_Name</h5>
+        <p class="card-text">ID: @Model.id</p>
+        <p class="card-text">Description: @Model.Dept_Desc</p>
+        <p class="card-text">Location: @Model.Dept_Location</p>
+        <p class="card-text">Manager ID: @Model.Dept_Manager</p>
+        <p class="card-text">Manager Hire Date: @Model.Manager_hiredate</p>
+    </div>
+</div>
+    <h3>student Name : @ViewBag.Student_Name</h3>

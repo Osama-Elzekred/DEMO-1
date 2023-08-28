@@ -10,7 +10,7 @@ ViewBag.Title = "Edit Student";
         <label for="studentId">ID:</label>
         <input type="text" class="form-control" id="studentId" name="Id" required>
         </div>*@
-        <form method="POST" ,action="editStud">
+    <form method="POST" asp-action="editStud">
         @*<input type="hidden" asp-for="Id" />*@
         @Html.HiddenFor(model => model.Id)
         

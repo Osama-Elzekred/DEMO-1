@@ -74,10 +74,11 @@ namespace DEMO_1.Controllers
         {
             //return Redirect("url?q=clientserver");
             //int id = int.Parse(Request.Query["id"].ToString());
-            var std = deptBLL.GetById(id);
+            var Dept = deptBLL.GetById(id);
+            ViewBag.Student_Name = HttpContext.Session.GetString("Student_Name");
             if (TempData is null)
-                return NotFound("Student not Found");
-            return View(std);
+                return NotFound("Department not Found");
+            return View(Dept);
         }
     }
 }

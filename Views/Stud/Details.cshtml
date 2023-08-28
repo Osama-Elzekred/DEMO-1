@@ -1,13 +1,36 @@
 ﻿@*@model IEnumerable<DEMO_1.Scaffold.Student>*@
-@model IEnumerable<Student>
+@model Student
 
 @{
     ViewBag.Titel = "Details";
 }
 
+<h2>Student Details</h2>
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Department </th>
+            </tr>
+        </thead>
+    <tbody>
+        <tr>
+            <td>@Model.Id</td>
+            <td>@Model.Fname</td>
+            <td>@Model.Lname</td>
+            <td>@Model.Address</td>
+            <td>@Model.Email</td>
+            <td>@Model.Age</td>
+                <td> <a asp-action="Details" asp-controller="Department" asp-route-id="@Model.Dept_Id">@Model?.Department?.Dept_Name</a></td>
+        </tr>
+    </tbody>
+        <h3>@ViewData["Uname"]</h3>
+</table>
 
-    @foreach (var item in Model)
-    {
-      <h3>@item</h3>
-    }
 

@@ -1,6 +1,9 @@
 ﻿using DEMO_1.BLL;
+using DEMO_1.CustomAttributes.ExceptionHandler;
+using DEMO_1.CustomAttributes.Filter;
 using DEMO_1.Data;
 using DEMO_1.Models;
+using Microsoft.AspNetCore.Authorization;
 //using DEMO_1.Scaffold;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -27,11 +30,14 @@ namespace DEMO_1.Controllers
             //return Redirect("url?q=clientserver");
             //int id = int.Parse(Request.Query["id"].ToString());
             var std = studentBLL.GetById(id);
+            ViewData["Uname"] = HttpContext.Session.GetString("Uname");
+            HttpContext.Session.SetString("Student_Name", std.Fname + " " + std.Lname);
             if (TempData is null)
                 return BadRequest();
             return View(std);
         }
         [HttpPost]
+       
         public IActionResult Create(Student model)
         {         
             studentBLL.Add(model);
@@ -39,16 +45,24 @@ namespace DEMO_1.Controllers
             //return Content($"Student {std.Name} is added successfully");
         }
         [HttpGet]
+       
         public IActionResult Create()
         {
             ViewBag.Dept = new SelectList(studentBLL.GetDept(), "id", "Dept_Name");
             return View();
         }
+        //[MyAuthorize]
+        //[Authorize(Roles = "user,SuperAdmin")]
+        [MyExceptionHandler]
         public IActionResult Delete(int id)
         {
+           
             var std = studentBLL.GetById(id);
+            var x= int.Parse("sdf");
             studentBLL.Delete(std);
             return RedirectToAction("index");
+
+           
         }
         public IActionResult EditStud(int id)
         {
@@ -89,19 +103,13 @@ namespace DEMO_1.Controllers
         {
             return Json(!studentBLL.IsEmailExist(email,Id));
         }
-        //public ViewResult Details()
+        //public IActionResult Details(int id)
         //{
-        //    // Code-frist approach
-        //    using (studentBLL)
-        //    {
-
-        //        var std = studentBLL.Students.Where(s => s.Id > 0).ToList();
-        //        return View(std);
-        //    }
+            // Code-frist approach
 
 
-        //    // DB -first approach
-        //    //return View(new Scaffold.ItisContext().Students.Where(s => s.StId > 0));
+            // DB -first approach
+            //return View(new Scaffold.ItisContext().Students.Where(s => s.StId > 0));
         //}
         /*   public ViewResult Details2()
            {
